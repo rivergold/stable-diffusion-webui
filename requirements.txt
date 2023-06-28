@@ -6,7 +6,6 @@ gfpgan
 gradio==3.31.0
 numpy
 omegaconf
-opencv-contrib-python
 requests
 piexif
 Pillow

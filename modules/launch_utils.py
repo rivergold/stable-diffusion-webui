@@ -296,7 +296,7 @@ def prepare_environment():
 
     if not os.path.isfile(requirements_file):
         requirements_file = os.path.join(script_path, requirements_file)
-    run_pip(f"install -r \"{requirements_file}\"", "requirements")
+    # run_pip(f"install -r \"{requirements_file}\"", "requirements")
 
     run_extensions_installers(settings_file=args.ui_settings_file)
 

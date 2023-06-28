@@ -81,26 +81,26 @@ printf "\e[1m\e[32mInstall script for stable-diffusion + Web UI\n"
 printf "\e[1m\e[34mTested on Debian 11 (Bullseye)\e[0m"
 printf "\n%s\n" "${delimiter}"
 
-# Do not run as root
-if [[ $(id -u) -eq 0 && can_run_as_root -eq 0 ]]
-then
-    printf "\n%s\n" "${delimiter}"
-    printf "\e[1m\e[31mERROR: This script must not be launched as root, aborting...\e[0m"
-    printf "\n%s\n" "${delimiter}"
-    exit 1
-else
-    printf "\n%s\n" "${delimiter}"
-    printf "Running on \e[1m\e[32m%s\e[0m user" "$(whoami)"
-    printf "\n%s\n" "${delimiter}"
-fi
+# # Do not run as root
+# if [[ $(id -u) -eq 0 && can_run_as_root -eq 0 ]]
+# then
+#     printf "\n%s\n" "${delimiter}"
+#     printf "\e[1m\e[31mERROR: This script must not be launched as root, aborting...\e[0m"
+#     printf "\n%s\n" "${delimiter}"
+#     exit 1
+# else
+#     printf "\n%s\n" "${delimiter}"
+#     printf "Running on \e[1m\e[32m%s\e[0m user" "$(whoami)"
+#     printf "\n%s\n" "${delimiter}"
+# fi
 
-if [[ $(getconf LONG_BIT) = 32 ]]
-then
-    printf "\n%s\n" "${delimiter}"
-    printf "\e[1m\e[31mERROR: Unsupported Running on a 32bit OS\e[0m"
-    printf "\n%s\n" "${delimiter}"
-    exit 1
-fi
+# if [[ $(getconf LONG_BIT) = 32 ]]
+# then
+#     printf "\n%s\n" "${delimiter}"
+#     printf "\e[1m\e[31mERROR: Unsupported Running on a 32bit OS\e[0m"
+#     printf "\n%s\n" "${delimiter}"
+#     exit 1
+# fi
 
 if [[ -d .git ]]
 then
@@ -160,32 +160,32 @@ else
     cd "${clone_dir}"/ || { printf "\e[1m\e[31mERROR: Can't cd to %s/%s/, aborting...\e[0m" "${install_dir}" "${clone_dir}"; exit 1; }
 fi
 
-if [[ -z "${VIRTUAL_ENV}" ]];
-then
-    printf "\n%s\n" "${delimiter}"
-    printf "Create and activate python venv"
-    printf "\n%s\n" "${delimiter}"
-    cd "${install_dir}"/"${clone_dir}"/ || { printf "\e[1m\e[31mERROR: Can't cd to %s/%s/, aborting...\e[0m" "${install_dir}" "${clone_dir}"; exit 1; }
-    if [[ ! -d "${venv_dir}" ]]
-    then
-        "${python_cmd}" -m venv "${venv_dir}"
-        first_launch=1
-    fi
-    # shellcheck source=/dev/null
-    if [[ -f "${venv_dir}"/bin/activate ]]
-    then
-        source "${venv_dir}"/bin/activate
-    else
-        printf "\n%s\n" "${delimiter}"
-        printf "\e[1m\e[31mERROR: Cannot activate python venv, aborting...\e[0m"
-        printf "\n%s\n" "${delimiter}"
-        exit 1
-    fi
-else
-    printf "\n%s\n" "${delimiter}"
-    printf "python venv already activate: ${VIRTUAL_ENV}"
-    printf "\n%s\n" "${delimiter}"
-fi
+# if [[ -z "${VIRTUAL_ENV}" ]];
+# then
+#     printf "\n%s\n" "${delimiter}"
+#     printf "Create and activate python venv"
+#     printf "\n%s\n" "${delimiter}"
+#     cd "${install_dir}"/"${clone_dir}"/ || { printf "\e[1m\e[31mERROR: Can't cd to %s/%s/, aborting...\e[0m" "${install_dir}" "${clone_dir}"; exit 1; }
+#     if [[ ! -d "${venv_dir}" ]]
+#     then
+#         "${python_cmd}" -m venv "${venv_dir}"
+#         first_launch=1
+#     fi
+#     # shellcheck source=/dev/null
+#     if [[ -f "${venv_dir}"/bin/activate ]]
+#     then
+#         source "${venv_dir}"/bin/activate
+#     else
+#         printf "\n%s\n" "${delimiter}"
+#         printf "\e[1m\e[31mERROR: Cannot activate python venv, aborting...\e[0m"
+#         printf "\n%s\n" "${delimiter}"
+#         exit 1
+#     fi
+# else
+#     printf "\n%s\n" "${delimiter}"
+#     printf "python venv already activate: ${VIRTUAL_ENV}"
+#     printf "\n%s\n" "${delimiter}"
+# fi
 
 # Try using TCMalloc on Linux
 prepare_tcmalloc() {
